@@ -6,8 +6,8 @@ sudo apt-get install -y tor
 
 # Step 2 Generate hostname and private_key with eschalot
 cd 
-sudo apt install -y build-essential libssl-dev
-git clone https://github.com/ReclaimYourPrivacy/eschalot.git
+sudo apt-get install -y build-essential libssl-dev
+sydo git clone https://github.com/ReclaimYourPrivacy/eschalot.git
 cd eschalot
 make
 ./eschalot -vp bc -t 1 > bconion
@@ -16,15 +16,15 @@ sed -n 1p bconion-temp >hostname
 sed '1d' bconion-temp > private_key
 
 # Step 3 Create folder to store hostname and private-key for tor
-mkdir /var/lib/tor/bitcoinc-service
+sudo mkdir /var/lib/tor/bitcoinc-service
 
-cp hostname /var/lib/tor/bitcoinc-service
-cp private_key /var/lib/tor/bitcoinc-service
+sudo cp hostname /var/lib/tor/bitcoinc-service
+sudo cp private_key /var/lib/tor/bitcoinc-service
 
 
 # Step 4 append 2 line to Tor config
-echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" >> /etc/tor/torrc
-echo "HiddenServicePort 9789 127.0.0.1:9789" >> /etc/tor/torrc
+sudo echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" >> /etc/tor/torrc
+sudo echo "HiddenServicePort 9789 127.0.0.1:9789" >> /etc/tor/torrc
 
 
 #Step 5 Update binconc.conf and restart wallet 
