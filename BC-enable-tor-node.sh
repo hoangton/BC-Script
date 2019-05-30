@@ -11,7 +11,7 @@ sudo apt install -y build-essential libssl-dev git
 sudo git clone https://github.com/ReclaimYourPrivacy/eschalot.git
 cd eschalot
 sudo make
-sudo chmod -R 755 ~/eschalot
+sudo chmod -R 777 ~/eschalot
 sudo ./eschalot -vp b -t 1 > bconion && sleep 20
 sudo sed '1d' bconion > bconion-temp
 sudo sed -n 1p bconion-temp >hostname
