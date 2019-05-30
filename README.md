@@ -6,7 +6,7 @@ Scripts are designed to be run as root user.  Modify with sudo if running as use
 curl -sSL https://raw.githubusercontent.com/Bitcoin-Confidential/BC-Script/master/BC-Install-node.sh | bash
 
 ## For Enable Tor on Staking Node linux 
-curl -sSL https://github.com/hoangton/BC-Script/blob/master/BC-enable-tor-node.sh | bash
+curl -sSL https://raw.githubusercontent.com/hoangton/BC-Script/master/BC-enable-tor-node.sh | bash
 
 ## For QT linux install  
 curl -sSL https://raw.githubusercontent.com/Bitcoin-Confidential/BC-Script/master/BC-Install-QT.sh | bash
