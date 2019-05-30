@@ -6,7 +6,7 @@ sudo apt-get install -y tor
 
 # Step 2 Generate hostname and private_key with eschalot
 cd 
-sudo apt install build-essential libssl-dev
+sudo apt install -y build-essential libssl-dev
 git clone https://github.com/ReclaimYourPrivacy/eschalot.git
 cd eschalot
 make
