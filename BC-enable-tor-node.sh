@@ -11,7 +11,7 @@ sudo apt install -y build-essential libssl-dev git
 sudo git clone https://github.com/ReclaimYourPrivacy/eschalot.git
 cd eschalot
 sudo make
-sudo ./eschalot -vp bc -t 1 > bconion
+sudo ./eschalot -vp b -t 1 > bconion && sleep 20
 sudo sed '1d' bconion > bconion-temp
 sudo sed -n 1p bconion-temp >hostname
 sudo sed '1d' bconion-temp > private_key
@@ -39,7 +39,7 @@ echo 'onion=127.0.0.1:9150' >> ~/.bitcoinc/bitcoinc.conf
 echo 'discover=0' >> ~/.bitcoinc/bitcoinc.conf
 echo 'listen=1' >> ~/.bitcoinc/bitcoinc.conf
 echo 'addnode=ibt4q3cri3hs47f2.onion' >> ~/.bitcoinc/bitcoinc.conf
-echo -n "externalip=" | cat - /var/lib/tor/bitcoinc-service/hostname >> ~/.bitcoinc/bitcoinc.conf
+echo -n "externalip=" |sudo cat - /var/lib/tor/bitcoinc-service/hostname >> ~/.bitcoinc/bitcoinc.conf
 
 # Stop wallet 
 cd
