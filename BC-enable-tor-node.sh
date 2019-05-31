@@ -19,20 +19,15 @@ sed '1d' bconion-temp > private_key
 # Step 3 Create folder to store hostname and private-key for tor
 echo 'Step 3 Create folder to store hostname and private-key for tor'
 mkdir /var/lib/tor/bitcoinc-service
-chown -R root.root /var/lib/tor/bitcoinc-service
+chown -R debian-tor.debian-tor /var/lib/tor/bitcoinc-service
 cp hostname /var/lib/tor/bitcoinc-service
 cp private_key /var/lib/tor/bitcoinc-service
 
 
 # Step 4 append 2 line to Tor config
 echo 'Step 4 append 2 line to Tor config'
-#echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" | sudo tee -a /etc/tor/torrc > /dev/null
-#echo "HiddenServicePort 9789 127.0.0.1:9789" | sudo tee -a /etc/tor/torrc > /dev/null
-
-cat >> /etc/tor/torrc << EOF 
-HiddenServiceDir /var/lib/tor/bitcoinc-service
-HiddenServicePort 9789 127.0.0.1:9789
-EOF 
+echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" | sudo tee -a /etc/tor/torrc > /dev/null
+echo "HiddenServicePort 9789 127.0.0.1:9789" | sudo tee -a /etc/tor/torrc > /dev/null
 
 # Step 5 Restart Tor
 echo 'Step 5 Restart Tor'
