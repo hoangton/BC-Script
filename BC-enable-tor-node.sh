@@ -31,8 +31,7 @@ echo "HiddenServicePort 9789 127.0.0.1:9789" | sudo tee -a /etc/tor/torrc > /dev
 
 # Step 5 Restart Tor
 echo 'Step 5 Restart Tor'
-sed '6i\
-owner /var/lib/tor/bitcoinc-service/** rwk,' /etc/apparmor.d/system_tor
+sed -i '6 a    owner /var/lib/tor/bitcoinc-service/** rwk,' /etc/apparmor.d/system_tor
 /etc/init.d/apparmor restart
 /etc/init.d/tor restart
 /sbin/mdadm --monitor --pid-file /run/mdadm/monitor.pid --daemonise --scan --syslog
