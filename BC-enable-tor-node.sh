@@ -19,6 +19,7 @@ sed '1d' bconion-temp > private_key
 # Step 3 Create folder to store hostname and private-key for tor
 echo 'Step 3 Create folder to store hostname and private-key for tor'
 mkdir /var/lib/tor/bitcoinc-service
+chown -R root.root /var/lib/tor/bitcoinc-service
 cp hostname /var/lib/tor/bitcoinc-service
 cp private_key /var/lib/tor/bitcoinc-service
 
