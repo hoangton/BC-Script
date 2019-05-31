@@ -28,11 +28,21 @@ echo 'Step 4 append 2 line to Tor config'
 echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" | sudo tee -a /etc/tor/torrc > /dev/null
 echo "HiddenServicePort 9789 127.0.0.1:9789" | sudo tee -a /etc/tor/torrc > /dev/null
 
-service tor restart
+# Step 5 Restart Tor
+echo 'Step 5 Restart Tor'
+sed '6i\
+owner /var/lib/tor/bitcoinc-service/** rwk,' /etc/apparmor.d/system_tor
+/etc/init.d/apparmor restart
+/etc/init.d/tor restart
+/sbin/mdadm --monitor --pid-file /run/mdadm/monitor.pid --daemonise --scan --syslog
+/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 &
 
-#Step 5 Update binconc.conf and restart wallet 
-echo 'Step 5 Update binconc.conf and restart wallet '
-echo 'server=1' > ~/.bitcoinc/bitcoinc.conf
+
+#Step 6 Update binconc.conf and restart wallet 
+echo 'Step 6 Update binconc.conf and restart wallet '
+echo 'daemon=1' > ~/.bitcoinc/bitcoinc.conf
+echo 'onlynet=onion' >> ~/.bitcoinc/bitcoinc.conf
+echo 'server=1' >> ~/.bitcoinc/bitcoinc.conf
 echo 'maxconnections=128' >> ~/.bitcoinc/bitcoinc.conf
 echo 'onion=127.0.0.1:9150' >> ~/.bitcoinc/bitcoinc.conf
 echo 'discover=0' >> ~/.bitcoinc/bitcoinc.conf
