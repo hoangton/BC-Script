@@ -26,8 +26,13 @@ cp private_key /var/lib/tor/bitcoinc-service
 
 # Step 4 append 2 line to Tor config
 echo 'Step 4 append 2 line to Tor config'
-echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" | sudo tee -a /etc/tor/torrc > /dev/null
-echo "HiddenServicePort 9789 127.0.0.1:9789" | sudo tee -a /etc/tor/torrc > /dev/null
+#echo "HiddenServiceDir /var/lib/tor/bitcoinc-service/" | sudo tee -a /etc/tor/torrc > /dev/null
+#echo "HiddenServicePort 9789 127.0.0.1:9789" | sudo tee -a /etc/tor/torrc > /dev/null
+
+cat >> /etc/tor/torrc << EOF 
+HiddenServiceDir /var/lib/tor/bitcoinc-service
+HiddenServicePort 9789 127.0.0.1:9789
+EOF 
 
 # Step 5 Restart Tor
 echo 'Step 5 Restart Tor'
